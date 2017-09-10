@@ -1,0 +1,23 @@
+﻿var aws = require('aws-sdk');
+var lambda = new aws.Lambda({apiVersion: '2014-11-11'});
+
+exports.handler = (event, context, callback) => {
+	console.log("1");
+     var awParam = {
+      FunctionName: "lambdafunc2",
+        InvokeArgs: JSON.stringify({
+            "key1": 'var_1-hogeeeee',
+            "key2": 'var_2-fugaaaaa'
+            }, null, ' ')
+     };
+	console.log("2");
+     lambda.invokeAsync(awParam, function(err, data) {
+      if(err) {
+	console.log("3");
+       console.log(err + err.stack);
+      }
+      else {
+	console.log("4");
+       console.log(data);
+      }});
+};
